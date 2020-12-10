@@ -1,0 +1,127 @@
+<div class="container">
+  <h2>Employee Details</h2>         
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Employee Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Designation</th>
+        <th>Work Logged</th>
+        <th>Vacations</th>
+        <th>Log Work</th>
+        <th>Apply Vacation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{employee.userId}}</td>
+        <td>{{employee.userName}}</td>
+        <td>{{employee.age}}</td>
+        <td>{{employee.designation}}</td>
+        <td>{{employee.workDays}}</td>
+        <td>{{employee.vacations}}</td>
+        <td>
+        <button class="btn btn-lg btn-outline-primary"
+				(click)="open(content, employee)"> 
+				Log Your Work
+		</button> 
+		</td>
+        <td>
+        <button class="btn btn-lg btn-outline-primary"
+				(click)="open(contentvacation, employee)"> 
+				Apply for Vacation 
+		</button> 
+		</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #content let-modal> 
+	<div class="modal-header"> 
+		<h4 class="modal-title"
+			id="modal-basic-title"> 
+			Log Your Work 
+		</h4> 
+		<button type="button" class="close"
+				aria-label="Close" (click)= 
+				"modal.dismiss('Cross click')"> 
+
+			<span aria-hidden="true"> 
+				X 
+			</span> 
+		</button> 
+	</div> 
+	<div class="modal-body"> 
+		<form #logWorkForm="ngForm"> 
+			<div class="form-group"> 
+				<label for="logwork"> 
+					Enter Work Days
+				</label> 
+				<div class="input-group"> 
+					<input id="logwork"
+						class="form-control"
+						placeholder="Log work"
+						name="logwork"
+						type="number"
+						min="1"
+						max="260"
+						[(ngModel)]="workDays"
+						required> 
+				</div> 
+			</div> 
+		</form> 
+	</div> 
+	<div class="modal-footer"> 
+		<button type="submit"
+			class="btn btn-outline-dark"
+			(click)="logWork()"> 
+			Save 
+		</button> 
+	</div> 
+</ng-template> 
+
+
+<ng-template #contentvacation let-modal> 
+	<div class="modal-header"> 
+		<h4 class="modal-title"
+			id="modal-basic-title"> 
+			Apply for Vacation 
+		</h4> 
+		<button type="button" class="close"
+				aria-label="Close" (click)= 
+				"modal.dismiss('Cross click')"> 
+
+			<span aria-hidden="true"> 
+				X 
+			</span> 
+		</button> 
+	</div> 
+	<div class="modal-body"> 
+		<form #vacationForm="ngForm"> 
+			<div class="form-group"> 
+				<label for="vacation"> 
+					Enter your vacations 
+				</label> 
+				<div class="input-group"> 
+					<input id="vacation"
+						class="form-control"
+						placeholder="Vacations"
+						name="vacation"
+						type="number"
+						[(ngModel)]="vacations"
+						required> 
+				</div> 
+			</div> 
+		</form> 
+	</div> 
+	<div class="modal-footer"> 
+		<button type="button"
+			class="btn btn-outline-dark"
+			(click)="takeVacation()"> 
+			Save 
+		</button> 
+	</div> 
+</ng-template> 
